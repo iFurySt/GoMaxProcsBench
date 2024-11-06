@@ -1,0 +1,17 @@
+services:
+  golang:
+    image: golang:1.23-bullseye
+    command: bash
+    tty: true
+    env_file:
+      - .env
+    working_dir: /go/src/GoMaxProcsBench
+    volumes:
+      - ./:/go/src/GoMaxProcsBench
+    environment:
+      - GOPROXY=${GOPROXY}
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '200m'
